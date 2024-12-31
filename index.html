@@ -147,20 +147,21 @@
             const container = document.getElementById("events-container");
             container.innerHTML = "<h3>Upcoming Events</h3>";
 
-            // Hardcoded mock events
+ // Hardcoded mock events with details
             const mockEvents = [
-                { summary: "Gig at Jazz Club", start: { dateTime: "2024-02-02T19:00:00Z" } },
-                { summary: "Lesson with John", start: { dateTime: "2024-02-03T15:00:00Z" } },
-                { summary: "Band Practice", start: { dateTime: "2024-02-04T18:00:00Z" } }
+                { summary: "Gig at Jazz Club", start: { dateTime: "2024-02-02T19:00:00Z" }, amount: "$150", mileage: "15 miles" },
+                { summary: "Lesson with John", start: { dateTime: "2024-02-03T15:00:00Z" }, amount: "$60", mileage: "5 miles" },
+                { summary: "Band Practice", start: { dateTime: "2024-02-04T18:00:00Z" }, amount: "$0", mileage: "10 miles" }
             ];
 
             const list = document.createElement("ul");
             mockEvents.forEach(event => {
                 const start = new Date(event.start.dateTime).toLocaleString();
                 const listItem = document.createElement("li");
-                listItem.textContent = `${event.summary} - ${start}`;
+                listItem.textContent = `${event.summary} - ${start} - Payment: ${event.amount} - Mileage: ${event.mileage}`;
                 list.appendChild(listItem);
             });
+
 
             container.appendChild(list);
         }
