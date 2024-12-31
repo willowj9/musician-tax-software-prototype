@@ -110,17 +110,20 @@
             }
         }
 
+
         function updateSignInStatus(isSignedIn) {
-            if (isSignedIn) {
-                document.getElementById("authorize-button").style.display = "none";
-                document.getElementById("signout-button").style.display = "block";
-                listUpcomingEvents();
-            } else {
-                document.getElementById("authorize-button").style.display = "inline-block";
-                document.getElementById("signout-button").style.display = "none";
-                document.getElementById("events-container").innerHTML = "<p>Please sign in to see your calendar events.</p>";
-            }
-        }
+    console.log("Sign-in status:", isSignedIn); // Debug
+    if (isSignedIn) {
+        document.getElementById("authorize-button").style.display = "none";
+        document.getElementById("signout-button").style.display = "inline-block";
+        listUpcomingEvents();
+    } else {
+        document.getElementById("authorize-button").style.display = "inline-block";
+        document.getElementById("signout-button").style.display = "none";
+        document.getElementById("events-container").innerHTML = "<p>Please sign in to see your calendar events.</p>";
+    }
+}
+
 
         async function handleAuthClick() {
             try {
