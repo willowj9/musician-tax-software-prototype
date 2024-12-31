@@ -1,3 +1,25 @@
+<script>
+    const CLIENT_ID = "your-client-id-from-calendar-env";
+    const API_KEY = "your-api-key-from-calendar-env";
+
+    async function initClient() {
+        try {
+            await gapi.client.init({
+                apiKey: API_KEY,
+                clientId: CLIENT_ID,
+                discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"],
+                scope: "https://www.googleapis.com/auth/calendar.readonly",
+            });
+
+            const isSignedIn = gapi.auth2.getAuthInstance().isSignedIn.get();
+            updateSignInStatus(isSignedIn);
+            gapi.auth2.getAuthInstance().isSignedIn.listen(updateSignInStatus);
+        } catch (error) {
+            console.error("Error initializing Google API client:", error);
+        }
+    }
+</script>
+
 <body>
     <div class="container">
         <div class="header">
