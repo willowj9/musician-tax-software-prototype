@@ -1,0 +1,6 @@
+CLIENT_ID=your-google-client-id
+API_KEY=your-google-api-key
+
+require('dotenv').config();
+const CLIENT_ID = process.env.CLIENT_ID;
+const API_KEY = process.env.API_KEY;
