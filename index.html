@@ -90,25 +90,29 @@
             gapi.load('client:auth2', initClient);
         }
 
+
         async function initClient() {
-            try {
-                await gapi.client.init({
-                    apiKey: API_KEY,
-                    clientId: CLIENT_ID,
-                    discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"],
-                    scope: SCOPES,
-                });
+    console.log("Initializing Google API client");
+    try {
+        await gapi.client.init({
+            apiKey: API_KEY,
+            clientId: CLIENT_ID,
+            discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"],
+            scope: SCOPES,
+        });
+        console.log("Google API client initialized");
 
-                const isSignedIn = gapi.auth2.getAuthInstance().isSignedIn.get();
-                updateSignInStatus(isSignedIn);
-                gapi.auth2.getAuthInstance().isSignedIn.listen(updateSignInStatus);
+        const isSignedIn = gapi.auth2.getAuthInstance().isSignedIn.get();
+        updateSignInStatus(isSignedIn);
+        gapi.auth2.getAuthInstance().isSignedIn.listen(updateSignInStatus);
 
-                document.getElementById("authorize-button").onclick = handleAuthClick;
-                document.getElementById("signout-button").onclick = handleSignoutClick;
-            } catch (error) {
-                console.error("Error initializing Google API client:", error);
-            }
-        }
+        document.getElementById("authorize-button").onclick = handleAuthClick;
+        document.getElementById("signout-button").onclick = handleSignoutClick;
+    } catch (error) {
+        console.error("Error initializing Google API client:", error);
+    }
+}
+
 
 
         function updateSignInStatus(isSignedIn) {
