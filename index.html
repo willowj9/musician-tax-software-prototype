@@ -4,10 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Musician Tax Software</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 2em;
+            margin: 0;
+        }
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .card {
+            padding: 20px;
+            background: #f1f1f1;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .card h2 {
+            margin: 0 0 10px;
+            font-size: 1.5em;
+        }
+        .card p {
+            margin: 0;
+        }
+        .event-details {
+            margin-top: 20px;
+        }
+        .event-details h3 {
+            margin-bottom: 10px;
+        }
+        .event-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .event-table th, .event-table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        .event-table th {
+            background-color: #f4f4f4;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #666;
+        }
+        .calendar-controls {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .calendar-controls button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
     <script src="https://apis.google.com/js/api.js"></script>
     <script>
-        const CLIENT_ID = "900776197607-teb5ksj5m2vbsfmdqnmstf3qh8k52j9u.apps.googleusercontent.com"; // Replace with your actual client ID
-        const API_KEY = "AIzaSyDsEKA9stj6CvoS_SjC54BZEpefJGjT7O4"; // Replace with your actual API key
+        const CLIENT_ID = "900776197607-teb5ksj5m2vbsfmdqnmstf3qh8k52j9u.apps.googleusercontent.com";
+        const API_KEY = "AIzaSyDsEKA9stj6CvoS_SjC54BZEpefJGjT7O4";
         const SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
 
         function handleClientLoad() {
@@ -40,7 +116,7 @@
                 document.getElementById("signout-button").style.display = "block";
                 listUpcomingEvents();
             } else {
-                document.getElementById("authorize-button").style.display = "block";
+                document.getElementById("authorize-button").style.display = "inline-block";
                 document.getElementById("signout-button").style.display = "none";
                 document.getElementById("events-container").innerHTML = "<p>Please sign in to see your calendar events.</p>";
             }
@@ -108,11 +184,29 @@
             <p>Track your gigs, payments, and expenses effortlessly</p>
         </div>
 
-        <button id="authorize-button" style="display: inline-block;">Authorize Google Calendar</button>
+        <div class="dashboard">
+            <div class="card">
+                <h2>Total Income</h2>
+                <p id="total-income">$4,200</p>
+            </div>
+            <div class="card">
+                <h2>Total Mileage</h2>
+                <p id="total-mileage">320 miles</p>
+            </div>
+            <div class="card">
+                <h2>Pending Payments</h2>
+                <p id="pending-payments">2 events</p>
+            </div>
+            <div class="card">
+                <h2>Tax Deductions</h2>
+                <p id="tax-deductions">$960</p>
+            </div>
+        </div>
 
-
-        <button id="authorize-button" style="display: none;">Authorize Google Calendar</button>
-        <button id="signout-button" style="display: none;">Sign Out</button>
+        <div class="calendar-controls">
+            <button id="authorize-button" style="display: none;">Authorize Google Calendar</button>
+            <button id="signout-button" style="display: none;">Sign Out</button>
+        </div>
 
         <div id="events-container">
             <p>Please sign in to see your calendar events.</p>
