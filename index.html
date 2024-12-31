@@ -126,12 +126,15 @@
 
 
         async function handleAuthClick() {
-            try {
-                await gapi.auth2.getAuthInstance().signIn();
-            } catch (error) {
-                console.error("Error during sign-in:", error);
-            }
-        }
+    console.log("Authorize button clicked");
+    try {
+        await gapi.auth2.getAuthInstance().signIn();
+        console.log("Sign-in successful");
+    } catch (error) {
+        console.error("Error during sign-in:", error);
+    }
+}
+
 
         async function handleSignoutClick() {
             try {
