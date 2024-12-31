@@ -170,6 +170,48 @@
             const container = document.getElementById("events-container");
             container.innerHTML = "<h3>Upcoming Events</h3>";
 
+            // Add mock events for demonstration
+            const mockEvents = [
+                { summary: "Gig at Jazz Club", start: { dateTime: "2024-02-02T19:00:00Z" } },
+                { summary: "Lesson with John", start: { dateTime: "2024-02-03T15:00:00Z" } },
+                { summary: "Band Practice", start: { dateTime: "2024-02-04T18:00:00Z" } }
+            ];
+
+            const mockList = document.createElement("ul");
+            mockEvents.forEach(event => {
+                const start = event.start.dateTime || event.start.date;
+                const listItem = document.createElement("li");
+                listItem.textContent = `${event.summary} - ${new Date(start).toLocaleString()}`;
+                mockList.appendChild(listItem);
+            });
+
+            container.appendChild(mockList);
+
+            if (!events.length) {
+                container.innerHTML += "<p>No real events found. Showing sample events instead:</p>";
+            } else {
+
+            if (!events.length) {
+                container.innerHTML += "<p>No upcoming events found. Displaying sample events instead:</p>";
+
+                // Add mock events for demonstration
+                const mockEvents = [
+                    { summary: "Gig at Jazz Club", start: { dateTime: "2024-02-02T19:00:00Z" } },
+                    { summary: "Lesson with John", start: { dateTime: "2024-02-03T15:00:00Z" } },
+                    { summary: "Band Practice", start: { dateTime: "2024-02-04T18:00:00Z" } }
+                ];
+
+                const mockList = document.createElement("ul");
+                mockEvents.forEach(event => {
+                    const start = event.start.dateTime || event.start.date;
+                    const listItem = document.createElement("li");
+                    listItem.textContent = `${event.summary} - ${new Date(start).toLocaleString()}`;
+                    mockList.appendChild(listItem);
+                });
+
+                container.appendChild(mockList);
+            } else {
+
             if (!events.length) {
                 container.innerHTML += "<p>No upcoming events found. Displaying sample events instead:</p>";
 
@@ -204,6 +246,9 @@
                 });
 
                 container.appendChild(list);
+            }
+            }
+        }
             }
         }
             }
